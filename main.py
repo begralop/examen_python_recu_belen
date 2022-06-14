@@ -2,24 +2,25 @@ import csv
 
 def read_data(filename1, filename2):
 
+    lista_leida1 = []
+
     with open(filename1, 'r') as file:
         reader = csv.reader(file)
         for row in reader:
-            print(row)
+            for i in lista_leida1
+            lista_leida1[] = row
            
+
+    print(row)
 
     with open(filename2, 'r') as file2:
         reader2 = csv.reader(file2)
-        for row2 in reader2:
-            print(row2)
+        
             
 
-    dicc_res = {}
-    
-    for i in reader:
+    dicc = {}
 
-
-
+   
 
 
 if __name__ == "__main__":
