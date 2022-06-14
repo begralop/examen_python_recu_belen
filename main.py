@@ -27,8 +27,8 @@ def read_data(filename1, filename2):
                         dic[row[0]] = dic2
                         dic[row[0]]['name'] = row[2]
                         dic[row[0]]['description'] = row[3]
-                        dic[row[0]]['lat'] = row[4]
-                        dic[row[0]]['lon'] = row[5]
+                        dic[row[0]]['lat'] = row2[4]
+                        dic[row[0]]['lon'] = row2[5]
         
     return dic
 
@@ -40,10 +40,25 @@ def get_name_description(clave,diccionario):
     else:
         return registro['name'],registro['description']
 
-def search_by_lon(longitud, diccionario):
 
-    registro = diccionario.get('lon')
-
+def search_by_lon(lon,diccionario):
+    try:
+        num = float(lon)%2
+    except ValueError:
+        raise ValueError("La lon no es un float")
+        
+    claves = diccionario.keys()
+    encontrado = False
+    clave_encontrada = ""
+    for clave in claves:
+        lon_clave = diccionario.get(clave)
+        if lon_clave['lon'] == lon:
+            encontrado = True
+            clave_encontrada = clave
+    if encontrado:
+        return clave_encontrada
+    else:
+        raise ValueError("El valor de lon no existe")
     
 
 
@@ -55,9 +70,9 @@ if __name__ == "__main__":
     #print(name)
     #print(descri)
 
-    long = search_by_lon('728257.03',diccionario_ej2)
+    res = search_by_lon('728257.03',diccionario_ej2)
 
-    print(long)
+    print(res)
    # nombre,description = get_name_description('1080', diccionario_ej2)
 
    
