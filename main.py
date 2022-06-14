@@ -32,24 +32,32 @@ def read_data(filename1, filename2):
         
     return dic
 
-def get_name_description(clave, diccionario):
 
-    for i in diccionario.keys():
-        if(clave == i):
-            print("ok")
-        
-        else:
-            raise ValueError("Algo está sucediendo en el string del número de la clase Flight")
+def get_name_description(clave,diccionario):
+    registro = diccionario.get(clave)
+    if registro == None:
+        raise ValueError("No existe esa clave")
+    else:
+        return registro['name'],registro['description']
+
+def search_by_lon(longitud, diccionario):
+
+    registro = diccionario.get('lon')
+
+    
 
 
 if __name__ == "__main__":
 
     diccionario_ej2=read_data("stops.csv", "stops_data.csv")
     
-    name, description = get_name_description('1080', diccionario_ej2)
+    name,descri = get_name_description('1080',diccionario_ej2)
+    #print(name)
+    #print(descri)
 
+    long = search_by_lon('728257.03',diccionario_ej2)
 
-
+    print(long)
    # nombre,description = get_name_description('1080', diccionario_ej2)
 
    
